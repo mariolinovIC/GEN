@@ -6,8 +6,7 @@ from torch.utils.data import DataLoader
 from torch import nn
 import numpy as np
 from gen_datasets import FTDataset
-from poisson_datasets import PoissonSquareRoomInpDataset, \
-        PoissonSquareRoomOutDataset
+from poisson_datasets import PoissonSquareRoomInpDataset, PoissonSquareRoomOutDataset
 from poisson_square_experiments_utils import *
 from neural_processes import NeuralProcesses
 from GEN import GEN
@@ -18,15 +17,15 @@ from utils import Net
 torch.manual_seed(0)
 cuda = torch.cuda.is_available()
 device = torch.device('cuda') if cuda else torch.device('cpu')
-model_type = ['GENSoftNN', 'GENPlanarGrid', 'NP'][0]
-bs = 8
-k = 32
+model_type = ['GENSoftNN', 'GENPlanarGrid', 'NP'][0] # Chose model type
+bs = 8 # Batch size
+k = 32 # Number of hidden layers for MLP in encoder and decoder
 node_train = 16
 sqrt_num_nodes_list = [2,3,4,5,6,7]
 copies_per_graph = 2
 opt_nodes = False
 slow_opt_nodes = False #Train node_pos only in part of each "house" data;slower
-do_tensorboard = True
+do_tensorboard = False
 # Changed the random initialization because GeneralizedHalton
 # doesn't install well on a Docker. We use another simple random initialization.
 
